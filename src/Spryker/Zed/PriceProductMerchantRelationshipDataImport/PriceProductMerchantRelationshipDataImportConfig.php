@@ -29,9 +29,6 @@ class PriceProductMerchantRelationshipDataImportConfig extends DataImportConfig
         return $this->buildImporterConfiguration($moduleDataImportDirectory . 'price_product_merchant_relationship.csv', static::IMPORT_TYPE_PRICE_PRODUCT_MERCHANT_RELATIONSHIP);
     }
 
-    /**
-     * @return string
-     */
     protected function getModuleRoot(): string
     {
         $moduleRoot = realpath(

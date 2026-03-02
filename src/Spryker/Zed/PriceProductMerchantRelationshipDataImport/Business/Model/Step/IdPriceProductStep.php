@@ -16,11 +16,6 @@ use Spryker\Zed\PriceProductMerchantRelationshipDataImport\Business\Model\DataSe
 
 class IdPriceProductStep implements DataImportStepInterface
 {
-    /**
-     * @param \Spryker\Zed\DataImport\Business\Model\DataSet\DataSetInterface $dataSet
-     *
-     * @return void
-     */
     public function execute(DataSetInterface $dataSet): void
     {
         $priceTypeEntity = SpyPriceTypeQuery::create()

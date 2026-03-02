@@ -19,21 +19,11 @@ class IdPriceProductStoreStep implements DataImportStepInterface
      */
     protected $idPriceProductStoreCache = [];
 
-    /**
-     * @param \Spryker\Zed\DataImport\Business\Model\DataSet\DataSetInterface $dataSet
-     *
-     * @return void
-     */
     public function execute(DataSetInterface $dataSet): void
     {
         $dataSet[PriceProductMerchantRelationshipDataSetInterface::ID_PRICE_PRODUCT_STORE] = $this->getIdPriceProductStoreEntity($dataSet);
     }
 
-    /**
-     * @param \Spryker\Zed\DataImport\Business\Model\DataSet\DataSetInterface $dataSet
-     *
-     * @return string
-     */
     protected function getIdPriceProductStoreEntity(DataSetInterface $dataSet): string
     {
         $cacheIndex = $this->buildCacheIndex($dataSet);
@@ -56,11 +46,6 @@ class IdPriceProductStoreStep implements DataImportStepInterface
         return $this->idPriceProductStoreCache[$cacheIndex];
     }
 
-    /**
-     * @param \Spryker\Zed\DataImport\Business\Model\DataSet\DataSetInterface $dataSet
-     *
-     * @return string
-     */
     protected function buildCacheIndex(DataSetInterface $dataSet): string
     {
         return implode('-', [

@@ -28,17 +28,11 @@ class PriceProductMerchantRelationshipDataImportCommunicationTester extends Acto
 {
     use _generated\PriceProductMerchantRelationshipDataImportCommunicationTesterActions;
 
-    /**
-     * @return void
-     */
     public function truncateMerchantRelationshipRelations(): void
     {
         $this->truncateTableRelations($this->getMerchantRelationshipQuery());
     }
 
-    /**
-     * @return \Orm\Zed\MerchantRelationship\Persistence\SpyMerchantRelationshipQuery
-     */
     protected function getMerchantRelationshipQuery(): SpyMerchantRelationshipQuery
     {
         return SpyMerchantRelationshipQuery::create();

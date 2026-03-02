@@ -52,49 +52,31 @@ class PriceProductMerchantRelationshipDataImportBusinessFactory extends DataImpo
         return $dataImporter;
     }
 
-    /**
-     * @return \Spryker\Zed\DataImport\Business\Model\DataImportStep\DataImportStepInterface
-     */
     public function createMerchantRelationshipKeyToIdBusinessUnitStep(): DataImportStepInterface
     {
         return new MerchantRelationshipKeyToIdMerchantRelationshipStep();
     }
 
-    /**
-     * @return \Spryker\Zed\DataImport\Business\Model\DataImportStep\DataImportStepInterface
-     */
     public function createProductSkuToIdProductStep(): DataImportStepInterface
     {
         return new ProductSkuToIdProductStep();
     }
 
-    /**
-     * @return \Spryker\Zed\DataImport\Business\Model\DataImportStep\DataImportStepInterface
-     */
     public function createStoreToIdStoreStep(): DataImportStepInterface
     {
         return new StoreToIdStoreStep();
     }
 
-    /**
-     * @return \Spryker\Zed\DataImport\Business\Model\DataImportStep\DataImportStepInterface
-     */
     public function createCurrencyToIdCurrencyStep(): DataImportStepInterface
     {
         return new CurrencyToIdCurrencyStep();
     }
 
-    /**
-     * @return \Spryker\Zed\DataImport\Business\Model\DataImportStep\DataImportStepInterface
-     */
     public function createIdPriceProductStep(): DataImportStepInterface
     {
         return new IdPriceProductStep();
     }
 
-    /**
-     * @return \Spryker\Zed\DataImport\Business\Model\DataImportStep\DataImportStepInterface
-     */
     public function createIdPriceProductStoreStep(): DataImportStepInterface
     {
         return new IdPriceProductStoreStep();

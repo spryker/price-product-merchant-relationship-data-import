@@ -35,9 +35,6 @@ class PriceProductMerchantRelationshipDataImportPluginTest extends Unit
      */
     protected $tester;
 
-    /**
-     * @return void
-     */
     public function testGetImportTypeReturnsTypeOfImporter(): void
     {
         $PriceProductMerchantRelationshipDataImportPlugin = new PriceProductMerchantRelationshipDataImportPlugin();
@@ -47,9 +44,6 @@ class PriceProductMerchantRelationshipDataImportPluginTest extends Unit
         );
     }
 
-    /**
-     * @return void
-     */
     public function testImportImportsData(): void
     {
         $this->tester->truncateMerchantRelationshipRelations();
@@ -79,9 +73,6 @@ class PriceProductMerchantRelationshipDataImportPluginTest extends Unit
         $this->tester->assertDatabaseTableContainsData();
     }
 
-    /**
-     * @return void
-     */
     protected function createRelatedData(): void
     {
         //this data is the data needed for the import files under _data/import

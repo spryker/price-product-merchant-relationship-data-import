@@ -17,11 +17,6 @@ use Spryker\Zed\PriceProductMerchantRelationshipDataImport\Business\Model\DataSe
 
 class PriceProductMerchantRelationshipWriterStep extends PublishAwareStep implements DataImportStepInterface
 {
-    /**
-     * @param \Spryker\Zed\DataImport\Business\Model\DataSet\DataSetInterface $dataSet
-     *
-     * @return void
-     */
     public function execute(DataSetInterface $dataSet): void
     {
         $priceProductMerchantRelationshipEntity = $this->findExistingPriceProductStoreEntity($dataSet);
@@ -59,11 +54,6 @@ class PriceProductMerchantRelationshipWriterStep extends PublishAwareStep implem
         );
     }
 
-    /**
-     * @param \Spryker\Zed\DataImport\Business\Model\DataSet\DataSetInterface $dataSet
-     *
-     * @return \Orm\Zed\PriceProductMerchantRelationship\Persistence\SpyPriceProductMerchantRelationship|null
-     */
     protected function findExistingPriceProductStoreEntity(DataSetInterface $dataSet): ?SpyPriceProductMerchantRelationship
     {
         /** @var \Orm\Zed\PriceProductMerchantRelationship\Persistence\SpyPriceProductMerchantRelationshipQuery $query */
