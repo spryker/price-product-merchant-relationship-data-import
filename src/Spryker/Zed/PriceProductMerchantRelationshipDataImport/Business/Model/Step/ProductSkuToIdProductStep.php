@@ -18,11 +18,6 @@ use Spryker\Zed\PriceProductMerchantRelationshipDataImport\Business\Model\DataSe
 class ProductSkuToIdProductStep implements DataImportStepInterface
 {
     /**
-     * @var array
-     */
-    protected $idProductCache = [];
-
-    /**
      * @param \Spryker\Zed\DataImport\Business\Model\DataSet\DataSetInterface $dataSet
      *
      * @throws \Spryker\Zed\DataImport\Business\Exception\DataKeyNotFoundInDataSetException
@@ -51,49 +46,27 @@ class ProductSkuToIdProductStep implements DataImportStepInterface
         }
     }
 
-    /**
-     * @param string $sku
-     *
-     * @throws \Pyz\Zed\DataImport\Business\Exception\EntityNotFoundException
-     *
-     * @return int
-     */
     protected function resolveIdProductByConcreteSku(string $sku): int
     {
-        if (!isset($this->idProductCache[$sku])) {
-            $productEntity = SpyProductQuery::create()
-                ->findOneBySku($sku);
+        $productEntity = SpyProductQuery::create()
+            ->findOneBySku($sku);
 
-            if (!$productEntity) {
-                throw new EntityNotFoundException(sprintf('Concrete product by sku "%s" not found.', $sku));
-            }
-
-            $this->idProductCache[$sku] = $productEntity->getIdProduct();
+        if (!$productEntity) {
+            throw new EntityNotFoundException(sprintf('Concrete product by sku "%s" not found.', $sku));
         }
 
-        return $this->idProductCache[$sku];
+        return $productEntity->getIdProduct();
     }
 
-    /**
-     * @param string $sku
-     *
-     * @throws \Pyz\Zed\DataImport\Business\Exception\EntityNotFoundException
-     *
-     * @return int
-     */
     protected function resolveIdProductByAbstractSku(string $sku): int
     {
-        if (!isset($this->idProductCache[$sku])) {
-            $productAbstractEntity = SpyProductAbstractQuery::create()
-                ->findOneBySku($sku);
+        $productAbstractEntity = SpyProductAbstractQuery::create()
+            ->findOneBySku($sku);
 
-            if (!$productAbstractEntity) {
-                throw new EntityNotFoundException(sprintf('Abstract product by sku "%s" not found.', $sku));
-            }
-
-            $this->idProductCache[$sku] = $productAbstractEntity->getIdProductAbstract();
+        if (!$productAbstractEntity) {
+            throw new EntityNotFoundException(sprintf('Abstract product by sku "%s" not found.', $sku));
         }
 
-        return $this->idProductCache[$sku];
+        return $productAbstractEntity->getIdProductAbstract();
     }
 }

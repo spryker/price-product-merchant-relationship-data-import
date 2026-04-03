@@ -16,33 +16,17 @@ use Spryker\Zed\PriceProductMerchantRelationshipDataImport\Business\Model\DataSe
 
 class MerchantRelationshipKeyToIdMerchantRelationshipStep implements DataImportStepInterface
 {
-    /**
-     * @var array
-     */
-    protected $idMerchantRelationshipCache = [];
-
-    /**
-     * @param \Spryker\Zed\DataImport\Business\Model\DataSet\DataSetInterface $dataSet
-     *
-     * @throws \Spryker\Zed\DataImport\Business\Exception\EntityNotFoundException
-     *
-     * @return void
-     */
     public function execute(DataSetInterface $dataSet): void
     {
         $merchantRelationshipKey = $dataSet[PriceProductMerchantRelationshipDataSetInterface::MERCHANT_RELATIONSHIP_KEY];
-        if (!isset($this->idMerchantRelationshipCache[$merchantRelationshipKey])) {
-            $idMerchantRelationship = SpyMerchantRelationshipQuery::create()
-                ->select(SpyMerchantRelationshipTableMap::COL_ID_MERCHANT_RELATIONSHIP)
-                ->findOneByMerchantRelationshipKey($merchantRelationshipKey);
+        $idMerchantRelationship = SpyMerchantRelationshipQuery::create()
+            ->select(SpyMerchantRelationshipTableMap::COL_ID_MERCHANT_RELATIONSHIP)
+            ->findOneByMerchantRelationshipKey($merchantRelationshipKey);
 
-            if (!$idMerchantRelationship) {
-                throw new EntityNotFoundException(sprintf('Could not find Merchant Relationship by key "%s"', $merchantRelationshipKey));
-            }
-
-            $this->idMerchantRelationshipCache[$merchantRelationshipKey] = $idMerchantRelationship;
+        if (!$idMerchantRelationship) {
+            throw new EntityNotFoundException(sprintf('Could not find Merchant Relationship by key "%s"', $merchantRelationshipKey));
         }
 
-        $dataSet[PriceProductMerchantRelationshipDataSetInterface::ID_MERCHANT_RELATIONSHIP] = $this->idMerchantRelationshipCache[$merchantRelationshipKey];
+        $dataSet[PriceProductMerchantRelationshipDataSetInterface::ID_MERCHANT_RELATIONSHIP] = $idMerchantRelationship;
     }
 }
